@@ -1,54 +1,207 @@
 
-<div class="ticker">
-  <div class="ticker-label">JORKUM LIVE</div>
-  <div class="ticker-track">
-    <div class="ticker-text">
-      ★ BIENVENIDOS A JORKUM CORPORATION
-      &nbsp; ◆ TECNOLOGÍA E INNOVACIÓN
-      &nbsp; ◆ SEGUIMIENTO DE PRECIOS
-      &nbsp; ◆ INTELIGENCIA ARTIFICIAL
-      &nbsp; ◆ NUEVOS PROYECTOS
-      &nbsp; ◆ SISTEMA OPERATIVO
-      &nbsp; ◆ BIENVENIDOS A JORKUM CORPORATION
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JORKUM CORPORATION</title>
 
 <style>
+* {box-sizing:border-box;margin:0;padding:0}
+
+body {
+ background:radial-gradient(circle at top,#15243a,#070b12 65%,#030508);
+ color:white;
+ font-family:Arial,sans-serif;
+ min-height:100vh;
+}
+
 .ticker {
-  display: flex;
-  align-items: center;
-  background: #101010;
-  border-bottom: 1px solid #b89550;
-  overflow: hidden;
-  height: 48px;
+ display:flex;
+ height:46px;
+ background:#101722;
+ border-bottom:1px solid #b89550;
+ overflow:hidden;
+ align-items:center;
 }
 
 .ticker-label {
-  background: #b89550;
-  color: #111;
-  font-weight: bold;
-  padding: 15px;
-  white-space: nowrap;
-  z-index: 2;
+ background:#b89550;
+ color:#101010;
+ font-weight:bold;
+ padding:15px;
+ white-space:nowrap;
 }
 
-.ticker-track {
-  overflow: hidden;
-  flex: 1;
-  white-space: nowrap;
-}
+.ticker-track {overflow:hidden;flex:1;white-space:nowrap}
 
 .ticker-text {
-  display: inline-block;
-  color: #e7c77b;
-  font-size: 14px;
-  letter-spacing: 2px;
-  animation: desplazamiento 30s linear infinite;
+ display:inline-block;
+ color:#e7c77b;
+ letter-spacing:2px;
+ font-size:13px;
+ animation:move 30s linear infinite;
 }
 
-@keyframes desplazamiento {
-  from { transform: translateX(100%); }
-  to { transform: translateX(-100%); }
+@keyframes move {
+ from {transform:translateX(100%)}
+ to {transform:translateX(-100%)}
+}
+
+header {
+ text-align:center;
+ padding:65px 20px 45px;
+}
+
+h1 {
+ color:#e7c77b;
+ font-size:clamp(35px,6vw,60px);
+ letter-spacing:8px;
+ text-shadow:0 0 20px #b89550;
+}
+
+.subtitle {
+ letter-spacing:6px;
+ color:#aeb9ca;
+ margin-top:12px;
+ font-size:13px;
+}
+
+.line {
+ width:150px;
+ height:2px;
+ background:#b89550;
+ margin:25px auto;
+}
+
+.welcome {
+ color:#b9c7da;
+ letter-spacing:3px;
+ font-size:13px;
+}
+
+main {
+ max-width:1050px;
+ margin:auto;
+ padding:20px;
+}
+
+.section-title {
+ color:#e7c77b;
+ text-align:center;
+ letter-spacing:4px;
+ margin-bottom:30px;
+}
+
+.grid {
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:20px;
+}
+
+.card {
+ background:linear-gradient(145deg,#17263a,#0b111c);
+ border:1px solid #34465e;
+ padding:35px 20px;
+ text-align:center;
+ border-radius:8px;
+ transition:.3s;
+ cursor:pointer;
+}
+
+.card:hover {
+ border-color:#e7c77b;
+ transform:translateY(-5px);
+ box-shadow:0 0 20px #b8955040;
+}
+
+.icon {
+ font-size:42px;
+ margin-bottom:18px;
+}
+
+.card h3 {
+ color:#e7c77b;
+ letter-spacing:2px;
+ font-size:15px;
+}
+
+.card p {
+ color:#9baabd;
+ margin-top:12px;
+ font-size:12px;
+ line-height:1.6;
+}
+
+footer {
+ text-align:center;
+ padding:55px 15px 25px;
+ color:#68768a;
+ font-size:11px;
+ letter-spacing:2px;
 }
 </style>
+</head>
+
+<body>
+
+<div class="ticker">
+ <div class="ticker-label">JORKUM LIVE</div>
+ <div class="ticker-track">
+  <div class="ticker-text">
+   ★ BIENVENIDOS A JORKUM CORPORATION
+   ◆ TECNOLOGÍA E INNOVACIÓN
+   ◆ SEGUIMIENTO DE PRECIOS
+   ◆ INTELIGENCIA ARTIFICIAL
+   ◆ NUEVOS PROYECTOS
+   ◆ SISTEMAS Y DESARROLLO
+   ◆ BIENVENIDOS A JORKUM CORPORATION
+  </div>
+ </div>
+</div>
+
+<header>
+ <h1>JORKUM</h1>
+ <div class="subtitle">CORPORATION</div>
+ <div class="line"></div>
+ <div class="welcome">CENTRO DE OPERACIONES</div>
+</header>
+
+<main>
+ <h2 class="section-title">NUESTROS DEPARTAMENTOS</h2>
+
+ <div class="grid">
+
+  <div class="card">
+   <div class="icon">💻</div>
+   <h3>TECNOLOGÍA</h3>
+   <p>Equipos informáticos y componentes.</p>
+  </div>
+
+  <div class="card" onclick="location.href='precios.html'">
+   <div class="icon">📊</div>
+   <h3>CONTROL DE PRECIOS</h3>
+   <p>Seguimiento de ofertas y evolución de precios.</p>
+  </div>
+
+  <div class="card">
+   <div class="icon">🤖</div>
+   <h3>INTELIGENCIA ARTIFICIAL</h3>
+   <p>Innovación y sistemas inteligentes.</p>
+  </div>
+
+  <div class="card">
+   <div class="icon">⚙️</div>
+   <h3>SISTEMAS</h3>
+   <p>Gestión y configuración de proyectos.</p>
+  </div>
+
+ </div>
+</main>
+
+<footer>
+ JORKUM CORPORATION · ADVANCED TECHNOLOGY SYSTEMS
+</footer>
+
+</body>
+</html>
