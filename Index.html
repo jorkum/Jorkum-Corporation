@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JORKUM CORPORATION</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ color:#fff;
+ background:#07111f;
+}
+header{
+ padding:35px 15px;
+ text-align:center;
+ background:linear-gradient(135deg,#07111f,#12345b);
+ border-bottom:1px solid #168bff;
+}
+.logo{
+ font-size:clamp(23px,5vw,38px);
+ font-weight:bold;
+ letter-spacing:3px;
+ text-shadow:0 0 18px #168bff;
+}
+.subtitle{
+ color:#77baff;
+ margin-top:12px;
+ letter-spacing:2px;
+ font-size:12px;
+}
+nav{
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:12px;
+ padding:18px;
+ background:#091827;
+}
+nav a{
+ color:#b9dfff;
+ text-decoration:none;
+ padding:12px 20px;
+ border:1px solid #1769ad;
+ border-radius:6px;
+}
+nav a:hover{
+ background:#087de0;
+ color:white;
+}
+main{
+ max-width:1050px;
+ margin:auto;
+ padding:30px 18px;
+}
+.hero{
+ text-align:center;
+ padding:65px 20px;
+ border:1px solid #14558d;
+ border-radius:14px;
+ background:radial-gradient(ellipse at top,#123c68,#091827 75%);
+ box-shadow:0 0 30px #0066aa33;
+}
+h1{font-size:clamp(25px,5vw,38px)}
+h2{color:#58adff}
+.hero p,.section p{color:#b9cce0;line-height:1.7}
+.section{
+ margin-top:35px;
+ padding:25px;
+ background:#0d2035;
+ border:1px solid #174d7d;
+ border-radius:12px;
+}
+.card{
+ margin-top:18px;
+ padding:20px;
+ background:#102943;
+ border:1px solid #247cc0;
+ border-radius:9px;
+}
+.card p{color:#b9cce0}
+.status{color:#58adff}
+footer{
+ margin-top:50px;
+ padding:25px;
+ text-align:center;
+ color:#7894af;
+ border-top:1px solid #174d7d;
+ font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">JORKUM CORPORATION</div>
+ <div class="subtitle">TECNOLOGÍA · INFORMACIÓN · HERRAMIENTAS</div>
+</header>
+
+<nav>
+ <a href="#inicio">INICIO</a>
+ <a href="#precios">BÚSQUEDA PRECIOS</a>
+</nav>
+
+<main>
+ <section class="hero" id="inicio">
+  <h1>Bienvenido a Jorkum Corporation</h1>
+  <p>Un espacio digital donde encontrarás herramientas, información y proyectos de interés.</p>
+  <p>Explora nuestras secciones y descubre lo que estamos creando.</p>
+ </section>
+
+ <section class="section" id="precios">
+  <h2>⌁ BÚSQUEDA DE PRECIOS</h2>
+  <p>Seguimiento de productos y evolución de sus precios.</p>
+
+  <div class="card">
+   <h3>Corsair 4500X RGB</h3>
+   <p>Control y seguimiento del precio de esta torre.</p>
+   <p>Objetivo de compra: 100 € o menos.</p>
+   <p class="status">Próximamente: indicador automático de precios.</p>
+  </div>
+
+  <div class="card">
+   <h3>Más productos</h3>
+   <p>Aquí iremos incorporando nuevos productos para vigilar sus precios.</p>
+  </div>
+ </section>
+</main>
+
+<footer>
+ © 2026 JORKUM CORPORATION · Todos los derechos reservados
+</footer>
+
+</body>
+</html>
