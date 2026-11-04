@@ -1,0 +1,54 @@
+
+<div class="ticker">
+  <div class="ticker-label">JORKUM LIVE</div>
+  <div class="ticker-track">
+    <div class="ticker-text">
+      ★ BIENVENIDOS A JORKUM CORPORATION
+      &nbsp; ◆ TECNOLOGÍA E INNOVACIÓN
+      &nbsp; ◆ SEGUIMIENTO DE PRECIOS
+      &nbsp; ◆ INTELIGENCIA ARTIFICIAL
+      &nbsp; ◆ NUEVOS PROYECTOS
+      &nbsp; ◆ SISTEMA OPERATIVO
+      &nbsp; ◆ BIENVENIDOS A JORKUM CORPORATION
+    </div>
+  </div>
+</div>
+
+<style>
+.ticker {
+  display: flex;
+  align-items: center;
+  background: #101010;
+  border-bottom: 1px solid #b89550;
+  overflow: hidden;
+  height: 48px;
+}
+
+.ticker-label {
+  background: #b89550;
+  color: #111;
+  font-weight: bold;
+  padding: 15px;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.ticker-track {
+  overflow: hidden;
+  flex: 1;
+  white-space: nowrap;
+}
+
+.ticker-text {
+  display: inline-block;
+  color: #e7c77b;
+  font-size: 14px;
+  letter-spacing: 2px;
+  animation: desplazamiento 30s linear infinite;
+}
+
+@keyframes desplazamiento {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+</style>
