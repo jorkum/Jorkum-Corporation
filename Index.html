@@ -5,133 +5,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JORKUM CORPORATION</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- color:#fff;
- background:#07111f;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-header{
- padding:35px 15px;
- text-align:center;
- background:linear-gradient(135deg,#07111f,#12345b);
- border-bottom:1px solid #168bff;
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #252525 0%, #080808 65%, #000 100%);
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
 }
-.logo{
- font-size:clamp(23px,5vw,38px);
- font-weight:bold;
- letter-spacing:3px;
- text-shadow:0 0 18px #168bff;
+
+.container {
+    padding: 25px;
+    width: 100%;
 }
-.subtitle{
- color:#77baff;
- margin-top:12px;
- letter-spacing:2px;
- font-size:12px;
+
+h1 {
+    font-size: clamp(30px, 6vw, 55px);
+    letter-spacing: 8px;
+    color: #e7c77b;
+    text-shadow: 0 0 20px #a98436;
 }
-nav{
- display:flex;
- justify-content:center;
- flex-wrap:wrap;
- gap:12px;
- padding:18px;
- background:#091827;
+
+.subtitle {
+    margin-top: 12px;
+    letter-spacing: 5px;
+    color: #aaa;
+    font-size: 13px;
 }
-nav a{
- color:#b9dfff;
- text-decoration:none;
- padding:12px 20px;
- border:1px solid #1769ad;
- border-radius:6px;
+
+.robot {
+    font-size: 145px;
+    margin: 35px 0;
+    filter: drop-shadow(0 0 25px #d6b35e);
 }
-nav a:hover{
- background:#087de0;
- color:white;
+
+button {
+    background: linear-gradient(135deg, #fff0bd, #bd913b);
+    color: #17120a;
+    border: 1px solid #ffe5a0;
+    padding: 17px 65px;
+    font-size: 19px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 0 25px #bd913b66;
+    transition: 0.3s;
 }
-main{
- max-width:1050px;
- margin:auto;
- padding:30px 18px;
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 35px #e7c77b;
 }
-.hero{
- text-align:center;
- padding:65px 20px;
- border:1px solid #14558d;
- border-radius:14px;
- background:radial-gradient(ellipse at top,#123c68,#091827 75%);
- box-shadow:0 0 30px #0066aa33;
-}
-h1{font-size:clamp(25px,5vw,38px)}
-h2{color:#58adff}
-.hero p,.section p{color:#b9cce0;line-height:1.7}
-.section{
- margin-top:35px;
- padding:25px;
- background:#0d2035;
- border:1px solid #174d7d;
- border-radius:12px;
-}
-.card{
- margin-top:18px;
- padding:20px;
- background:#102943;
- border:1px solid #247cc0;
- border-radius:9px;
-}
-.card p{color:#b9cce0}
-.status{color:#58adff}
-footer{
- margin-top:50px;
- padding:25px;
- text-align:center;
- color:#7894af;
- border-top:1px solid #174d7d;
- font-size:13px;
+
+.footer {
+    margin-top: 55px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #666;
 }
 </style>
 </head>
+
 <body>
 
-<header>
- <div class="logo">JORKUM CORPORATION</div>
- <div class="subtitle">TECNOLOGÍA · INFORMACIÓN · HERRAMIENTAS</div>
-</header>
+<div class="container">
 
-<nav>
- <a href="#inicio">INICIO</a>
- <a href="#precios.html">BÚSQUEDA PRECIOS</a>
-</nav>
+    <h1>JORKUM</h1>
+    <div class="subtitle">CORPORATION</div>
 
-<main>
- <section class="hero" id="inicio">
-  <h1>Bienvenido a Jorkum Corporation</h1>
-  <p>Un espacio digital donde encontrarás herramientas, información y proyectos de interés.</p>
-  <p>Explora nuestras secciones y descubre lo que estamos creando.</p>
- </section>
+    <div class="robot">🤖</div>
 
- <section class="section" id="precios">
-  <h2>⌁ BÚSQUEDA DE PRECIOS</h2>
-  <p>Seguimiento de productos y evolución de sus precios.</p>
+    <button onclick="window.location.href='principal.html'">
+        ENTRAR
+    </button>
 
-  <div class="card">
-   <h3>Corsair 4500X RGB</h3>
-   <p>Control y seguimiento del precio de esta torre.</p>
-   <p>Objetivo de compra: 100 € o menos.</p>
-   <p class="status">Próximamente: indicador automático de precios.</p>
-  </div>
+    <div class="footer">
+        ADVANCED TECHNOLOGY SYSTEMS
+    </div>
 
-  <div class="card">
-   <h3>Más productos</h3>
-   <p>Aquí iremos incorporando nuevos productos para vigilar sus precios.</p>
-  </div>
- </section>
-</main>
-
-<footer>
- © 2026 JORKUM CORPORATION · Todos los derechos reservados
-</footer>
+</div>
 
 </body>
 </html>
