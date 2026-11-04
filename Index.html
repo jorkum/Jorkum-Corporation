@@ -8,93 +8,69 @@
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-    min-height: 100vh;
-    background: radial-gradient(circle at center, #252525 0%, #080808 65%, #000 100%);
-    color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #05080e;
 }
 
-.container {
-    padding: 25px;
-    width: 100%;
+.portada {
+  width: 100%;
+  height: 100vh;
+  background-image: url('portada.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-h1 {
-    font-size: clamp(30px, 6vw, 55px);
-    letter-spacing: 8px;
-    color: #e7c77b;
-    text-shadow: 0 0 20px #a98436;
+.entrar {
+  position: absolute;
+  left: 67%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  width: 27%;
+  height: 13%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.subtitle {
-    margin-top: 12px;
-    letter-spacing: 5px;
-    color: #aaa;
-    font-size: 13px;
+.entrar:hover {
+  background: rgba(255, 196, 70, 0.10);
+  box-shadow: 0 0 35px rgba(255, 190, 50, 0.35);
+  border-radius: 15px;
 }
 
-.robot {
-    font-size: 145px;
-    margin: 35px 0;
-    filter: drop-shadow(0 0 25px #d6b35e);
-}
+@media(max-width: 700px) {
+  .portada {
+    background-size: auto 100%;
+    background-position: center;
+  }
 
-button {
-    background: linear-gradient(135deg, #fff0bd, #bd913b);
-    color: #17120a;
-    border: 1px solid #ffe5a0;
-    padding: 17px 65px;
-    font-size: 19px;
-    font-weight: bold;
-    letter-spacing: 5px;
-    cursor: pointer;
-    border-radius: 4px;
-    box-shadow: 0 0 25px #bd913b66;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 35px #e7c77b;
-}
-
-.footer {
-    margin-top: 55px;
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: #666;
+  .entrar {
+    left: 50%;
+    top: 75%;
+    width: 70%;
+    height: 12%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-    <h1>JORKUM</h1>
-    <div class="subtitle">CORPORATION</div>
-
-    <div class="robot">🤖</div>
-
-    <button onclick="window.location.href='principal.html'">
-        ENTRAR
-    </button>
-
-    <div class="footer">
-        ADVANCED TECHNOLOGY SYSTEMS
-    </div>
-
+<div class="portada">
+  <button class="entrar"
+    aria-label="Entrar en Jorkum Corporation"
+    onclick="window.location.href='principal.html'">
+  </button>
 </div>
 
 </body>
