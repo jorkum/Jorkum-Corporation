@@ -373,12 +373,30 @@ footer {
   </div>
 
   <div class="chart-area">
-    <div class="chart-title">COTIZACIÓN VERALLIA</div>
-    <div class="chart-note">
-      Pulsa en ACCIONES VERALLIA para consultar
-      la cotización y su gráfica en Investing.com.
-    </div>
+  <div class="chart-title">COTIZACIÓN VERALLIA</div>
+
+  <div class="tradingview-widget-container" style="height:350px;width:100%">
+    <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+    {
+      "autosize": true,
+      "symbol": "EURONEXT:VRLA",
+      "interval": "D",
+      "timezone": "Europe/Madrid",
+      "theme": "dark",
+      "style": "1",
+      "locale": "es",
+      "allow_symbol_change": false,
+      "hide_side_toolbar": true,
+      "withdateranges": true,
+      "details": true,
+      "calendar": false,
+      "hide_volume": false
+    }
+    </script>
   </div>
+</div>
 
   <div class="source">
     FUENTE: INVESTING.COM
