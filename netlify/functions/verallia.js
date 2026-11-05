@@ -51,6 +51,7 @@ const porcentaje = (variacion / cierreAnterior) * 100;
       simbolo: "VRLA.PA",
       cotizacion: Number(ultimoPrecio.toFixed(2)),
       variacion: Number(variacion.toFixed(2)),
+      cierreAnterior: Number(cierreAnterior.toFixed(2)),
       porcentaje: Number(porcentaje.toFixed(2)),
       maximoSesion: ultimoMaximo,
       minimoSesion: ultimoMinimo,
