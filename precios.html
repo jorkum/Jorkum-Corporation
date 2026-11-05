@@ -590,6 +590,69 @@ async function cargarEuribor() {
 
 cargarEuribor();
 </script>
+<script>
+async function actualizarVerallia() {
+  try {
+    const respuesta = await fetch(
+      '/.netlify/functions/verallia',
+      { cache: 'no-store' }
+    );
 
+    if (!respuesta.ok) {
+      throw new Error('Error al consultar Verallia');
+    }
+
+    const datos = await respuesta.json();
+
+    if (datos.error) {
+      throw new Error(datos.error);
+    }
+
+    const euros = valor =>
+      Number(valor).toLocaleString('es-ES', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + ' €';
+
+    document.getElementById('verallia-precio').textContent =
+      euros(datos.cotizacion);
+
+    const porcentaje = document.getElementById('verallia-porcentaje');
+
+    porcentaje.textContent =
+      (datos.porcentaje >= 0 ? '+' : '') +
+      datos.porcentaje.toFixed(2).replace('.', ',') + '%';
+
+    porcentaje.style.color =
+      datos.porcentaje >= 0 ? '#45d483' : '#ff6262';
+
+    document.getElementById('verallia-maximo').textContent =
+      euros(datos.maximoSesion);
+
+    document.getElementById('verallia-minimo').textContent =
+      euros(datos.minimoSesion);
+
+    document.getElementById('verallia-max52').textContent =
+      euros(datos.maximo52);
+
+    document.getElementById('verallia-min52').textContent =
+      euros(datos.minimo52);
+
+    document.getElementById('verallia-volumen').textContent =
+      Number(datos.volumen).toLocaleString('es-ES');
+
+    document.getElementById('verallia-fecha').textContent =
+      new Date(datos.fecha + 'T12:00:00').toLocaleDateString('es-ES');
+
+  } catch (error) {
+    console.error('Verallia:', error);
+    document.getElementById('verallia-precio').textContent =
+      'No disponible';
+  }
+}
+
+actualizarVerallia();
+setInterval(actualizarVerallia, 15 * 60 * 1000);
+</script>
 </body>
 </html>
