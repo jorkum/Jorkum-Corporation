@@ -242,17 +242,23 @@ footer {
 
     <article class="marco">
       <div class="marco-cabecera">
-        <h2>EURÍBOR</h2><span class="simbolo">12 MESES</span>
+<h2>EURÍBOR</h2><span class="simbolo">12 MESES</span>
       </div>
-      <div class="valor">-- %</div>
-      <div class="unidad">Tipo de referencia hipotecario</div>
-      <div class="detalles">
-        <div class="detalle"><small>MEDIA MENSUAL</small><strong>-- %</strong></div>
-        <div class="detalle"><small>MEDIA ANUAL</small><strong>-- %</strong></div>
-        <div class="detalle"><small>VALOR ANTERIOR</small><strong>-- %</strong></div>
-        <div class="detalle"><small>PUBLICACIÓN</small><strong>Diaria</strong></div>
+
+      <div class="unidad">Evolución del Euríbor a 12 meses</div>
+
+      <div class="grafica-euribor">
+        <div class="eudi-wdgra">
+          <script src="https://euribor-hoy.es/embed/chart.js"></script>
+          <p class="edg-copy">
+            <a href="https://www.euribordiario.es/" target="_blank">
+              Euríbor mensual · Fuente
+            </a>
+          </p>
+        </div>
       </div>
-      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+
+      <span class="pendiente">● GRÁFICA EXTERNA</span>
     </article>
 
     <article class="marco">
