@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JORKUM | Control Económico</title>
+
+<style>
+:root {
+  --fondo: #07111f;
+  --panel: #101f33;
+  --panel2: #142943;
+  --dorado: #d5ad58;
+  --azul: #55b7ff;
+  --texto: #f2f5fa;
+  --suave: #9eafc3;
+  --borde: #263b55;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #18314b 0%, transparent 55%),
+    linear-gradient(135deg, #07111f, #0a1728 60%, #07111f);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  padding: 24px 5%;
+  border-bottom: 1px solid var(--borde);
+  background: rgba(5, 13, 24, .85);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  color: var(--dorado);
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.sublogo {
+  color: var(--suave);
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-top: 5px;
+}
+
+header a {
+  color: var(--dorado);
+  text-decoration: none;
+  border: 1px solid var(--dorado);
+  padding: 10px 16px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+main {
+  width: 92%;
+  max-width: 1450px;
+  margin: 35px auto;
+}
+
+.intro {
+  margin-bottom: 28px;
+}
+
+.intro h1 {
+  font-size: 27px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.intro p {
+  color: var(--suave);
+  font-size: 14px;
+}
+
+.estado-general {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 7px 11px;
+  border: 1px solid #52657b;
+  border-radius: 4px;
+  color: var(--suave);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.seccion-titulo {
+  color: var(--dorado);
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin: 32px 0 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.marco {
+  background: linear-gradient(145deg, var(--panel2), var(--panel));
+  border: 1px solid var(--borde);
+  border-top: 2px solid var(--dorado);
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 225px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  transition: transform .2s, border-color .2s;
+}
+
+.marco:hover {
+  transform: translateY(-3px);
+  border-color: var(--dorado);
+}
+
+.marco-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.marco h2 {
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.simbolo {
+  color: var(--azul);
+  font-size: 11px;
+  font-weight: bold;
+  border: 1px solid #34516c;
+  padding: 5px 7px;
+  border-radius: 4px;
+}
+
+.valor {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 22px 0 5px;
+  color: white;
+}
+
+.unidad {
+  color: var(--suave);
+  font-size: 12px;
+}
+
+.detalles {
+  margin-top: 18px;
+  padding-top: 13px;
+  border-top: 1px solid var(--borde);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.detalle small {
+  display: block;
+  color: var(--suave);
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+.detalle strong {
+  font-size: 12px;
+  color: #dce7f3;
+}
+
+.pendiente {
+  display: inline-block;
+  color: #e5c77f;
+  font-size: 10px;
+  margin-top: 15px;
+  letter-spacing: .5px;
+}
+
+.nota {
+  color: var(--suave);
+  font-size: 11px;
+  margin-top: 25px;
+  line-height: 1.6;
+}
+
+footer {
+  border-top: 1px solid var(--borde);
+  padding: 22px 5%;
+  color: var(--suave);
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 950px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+  .intro h1 { font-size: 21px; }
+  header { padding: 20px 4%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <div class="logo">JORKUM</div>
+    <div class="sublogo">CORPORATION · FINANCIAL SYSTEM</div>
+  </div>
+  <a href="principal.html">← VOLVER AL CENTRO DE OPERACIONES</a>
+</header>
+
+<main>
+
+  <section class="intro">
+    <h1>CONTROL ECONÓMICO</h1>
+    <p>Panel de seguimiento de mercados, indicadores financieros y economía.</p>
+    <div class="estado-general">SISTEMA EN CONSTRUCCIÓN · CONEXIÓN DE DATOS PENDIENTE</div>
+  </section>
+
+  <div class="seccion-titulo">01 · INDICADORES PRINCIPALES</div>
+
+  <section class="grid">
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>EURÍBOR</h2><span class="simbolo">12 MESES</span>
+      </div>
+      <div class="valor">-- %</div>
+      <div class="unidad">Tipo de referencia hipotecario</div>
+      <div class="detalles">
+        <div class="detalle"><small>MEDIA MENSUAL</small><strong>-- %</strong></div>
+        <div class="detalle"><small>MEDIA ANUAL</small><strong>-- %</strong></div>
+        <div class="detalle"><small>VALOR ANTERIOR</small><strong>-- %</strong></div>
+        <div class="detalle"><small>PUBLICACIÓN</small><strong>Diaria</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>ACCIONES VERALLIA</h2><span class="simbolo">VRLA</span>
+      </div>
+      <div class="valor">-- €</div>
+      <div class="unidad">Euronext París · ISIN FR0013447729</div>
+      <div class="detalles">
+        <div class="detalle"><small>CAMBIO DIARIO</small><strong>-- %</strong></div>
+        <div class="detalle"><small>MÁXIMO DEL DÍA</small><strong>-- €</strong></div>
+        <div class="detalle"><small>MÍNIMO DEL DÍA</small><strong>-- €</strong></div>
+        <div class="detalle"><small>VOLUMEN</small><strong>--</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>IPC ESPAÑA</h2><span class="simbolo">INE</span>
+      </div>
+      <div class="valor">-- %</div>
+      <div class="unidad">Índice de precios de consumo · inflación interanual</div>
+      <div class="detalles">
+        <div class="detalle"><small>VARIACIÓN MENSUAL</small><strong>-- %</strong></div>
+        <div class="detalle"><small>IPC SUBYACENTE</small><strong>-- %</strong></div>
+        <div class="detalle"><small>ÚLTIMO MES</small><strong>--</strong></div>
+        <div class="detalle"><small>PUBLICACIÓN</small><strong>Mensual</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+  </section>
+
+  <div class="seccion-titulo">02 · BANCOS CENTRALES Y BOLSA</div>
+
+  <section class="grid">
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>TIPOS DE INTERÉS BCE</h2><span class="simbolo">BCE</span>
+      </div>
+      <div class="valor">-- %</div>
+      <div class="unidad">Tipos oficiales del Banco Central Europeo</div>
+      <div class="detalles">
+        <div class="detalle"><small>FACILIDAD DE DEPÓSITO</small><strong>-- %</strong></div>
+        <div class="detalle"><small>FINANCIACIÓN</small><strong>-- %</strong></div>
+        <div class="detalle"><small>PRÉSTAMO MARGINAL</small><strong>-- %</strong></div>
+        <div class="detalle"><small>PRÓXIMA REUNIÓN</small><strong>--</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>IBEX 35</h2><span class="simbolo">ESPAÑA</span>
+      </div>
+      <div class="valor">--</div>
+      <div class="unidad">Índice de referencia de la bolsa española</div>
+      <div class="detalles">
+        <div class="detalle"><small>CAMBIO DIARIO</small><strong>-- %</strong></div>
+        <div class="detalle"><small>MÁXIMO DEL DÍA</small><strong>--</strong></div>
+        <div class="detalle"><small>MÍNIMO DEL DÍA</small><strong>--</strong></div>
+        <div class="detalle"><small>EVOLUCIÓN ANUAL</small><strong>-- %</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>BOLSAS EUROPEAS</h2><span class="simbolo">EUROPA</span>
+      </div>
+      <div class="valor">--</div>
+      <div class="unidad">Seguimiento de los principales índices</div>
+      <div class="detalles">
+        <div class="detalle"><small>CAC 40 · FRANCIA</small><strong>--</strong></div>
+        <div class="detalle"><small>DAX · ALEMANIA</small><strong>--</strong></div>
+        <div class="detalle"><small>EURO STOXX 50</small><strong>--</strong></div>
+        <div class="detalle"><small>CAMBIO DIARIO</small><strong>-- %</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>DEUDA ESPAÑOLA</h2><span class="simbolo">BONO 10 AÑOS</span>
+      </div>
+      <div class="valor">-- %</div>
+      <div class="unidad">Rentabilidad de la deuda pública española a diez años</div>
+      <div class="detalles">
+        <div class="detalle"><small>VALOR ANTERIOR</small><strong>-- %</strong></div>
+        <div class="detalle"><small>VARIACIÓN</small><strong>--</strong></div>
+        <div class="detalle"><small>DEUDA / PIB</small><strong>-- %</strong></div>
+        <div class="detalle"><small>REFERENCIA</small><strong>España</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>EURO / DÓLAR</h2><span class="simbolo">EUR/USD</span>
+      </div>
+      <div class="valor">--</div>
+      <div class="unidad">Tipo de cambio de un euro en dólares estadounidenses</div>
+      <div class="detalles">
+        <div class="detalle"><small>CAMBIO DIARIO</small><strong>-- %</strong></div>
+        <div class="detalle"><small>MÁXIMO DEL DÍA</small><strong>--</strong></div>
+        <div class="detalle"><small>MÍNIMO DEL DÍA</small><strong>--</strong></div>
+        <div class="detalle"><small>EVOLUCIÓN ANUAL</small><strong>-- %</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+  </section>
+
+  <div class="seccion-titulo">03 · ECONOMÍA, ENERGÍA Y PRECIOS</div>
+
+  <section class="grid">
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>IPC EUROPEO</h2><span class="simbolo">EUROZONA</span>
+      </div>
+      <div class="valor">-- %</div>
+      <div class="unidad">Inflación armonizada de la zona euro</div>
+      <div class="detalles">
+        <div class="detalle"><small>ESPAÑA</small><strong>-- %</strong></div>
+        <div class="detalle"><small>EUROZONA</small><strong>-- %</strong></div>
+        <div class="detalle"><small>ALEMANIA</small><strong>-- %</strong></div>
+        <div class="detalle"><small>FRANCIA</small><strong>-- %</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>ENERGÍA Y MATERIAS PRIMAS</h2><span class="simbolo">ENERGÍA</span>
+      </div>
+      <div class="valor">-- €</div>
+      <div class="unidad">Indicadores de energía y materias primas</div>
+      <div class="detalles">
+        <div class="detalle"><small>ELECTRICIDAD</small><strong>-- €/MWh</strong></div>
+        <div class="detalle"><small>GAS NATURAL</small><strong>-- €/MWh</strong></div>
+        <div class="detalle"><small>PETRÓLEO BRENT</small><strong>-- $/barril</strong></div>
+        <div class="detalle"><small>ACTUALIZACIÓN</small><strong>Según mercado</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+    <article class="marco">
+      <div class="marco-cabecera">
+        <h2>ECONOMÍA ESPAÑOLA</h2><span class="simbolo">ESPAÑA</span>
+      </div>
+      <div class="valor">-- %</div>
+      <div class="unidad">Indicadores generales de actividad económica</div>
+      <div class="detalles">
+        <div class="detalle"><small>CRECIMIENTO PIB</small><strong>-- %</strong></div>
+        <div class="detalle"><small>DESEMPLEO</small><strong>-- %</strong></div>
+        <div class="detalle"><small>OCUPACIÓN</small><strong>--</strong></div>
+        <div class="detalle"><small>DEUDA PÚBLICA</small><strong>-- % PIB</strong></div>
+      </div>
+      <span class="pendiente">● ESPERANDO CONEXIÓN</span>
+    </article>
+
+  </section>
+
+  <p class="nota">
+    JORKUM CORPORATION · CONTROL ECONÓMICO.<br>
+    Los indicadores están pendientes de conexión con sus proveedores de datos.
+    Cada dato deberá mostrar su fuente, fecha y hora de actualización, y si es
+    en tiempo real o tiene retraso. Esta página no constituye asesoramiento financiero.
+  </p>
+
+</main>
+
+<footer>
+  JORKUM CORPORATION · FINANCIAL INTELLIGENCE SYSTEM
+</footer>
+
+</body>
+</html>
