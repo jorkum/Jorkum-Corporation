@@ -23,10 +23,14 @@ export default async () => {
     const ultimoIndice = cotizaciones.close.length - 1;
 
     const ultimoPrecio = meta.regularMarketPrice;
-    const cierreAnterior = meta.chartPreviousClose;
+   const cierresValidos = cotizaciones.close.filter(
+  v => v !== null
+);
 
-    const variacion = ultimoPrecio - cierreAnterior;
-    const porcentaje = (variacion / cierreAnterior) * 100;
+const cierreAnterior = cierresValidos[cierresValidos.length - 2];
+
+const variacion = ultimoPrecio - cierreAnterior;
+const porcentaje = (variacion / cierreAnterior) * 100;
 
     const maximos = cotizaciones.high.filter(v => v !== null);
     const minimos = cotizaciones.low.filter(v => v !== null);
