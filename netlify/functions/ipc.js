@@ -1,75 +1,89 @@
 
 export default async () => {
   try {
-    const url =
-      "https://www.ine.es/dyngs/INEbase/operacion.htm?c=Estadistica_C&cid=1254736176802&idp=1254735976607";
+    const base = "https://servicios.ine.es/wstempus/js/ES/DATOS_METADATAOPERACION/IPC";
 
-    const respuesta = await fetch(url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0"
+    async function consultar(variacion, grupo, serie) {
+      const parametros = new URLSearchParams({
+        g1: "349:16473",
+        g2: `3:${variacion}`,
+        g3: `${grupo}`,
+        p: "1",
+        nult: "13"
+      });
+
+      const respuesta = await fetch(`${base}?${parametros}`);
+
+      if (!respuesta.ok) {
+        throw new Error("Error consultando el INE");
       }
+
+      const datos = await respuesta.json();
+      const resultado = datos.find(item => item.COD === serie);
+
+      if (!resultado || !resultado.Data?.length) {
+        throw new Error(`No se encontraron datos para ${serie}`);
+      }
+
+      return resultado.Data.sort(
+        a.Anyo - b.Anyo
+          a.FK_Periodo - b.FK_Periodo
+      );
+    }
+
+    const [anual, mensual, subAnual, subMensual] =
+      await Promise.all([
+        consultar(74, "762:304092", "IPC290750"),
+        consultar(84, "762:304092", "IPC290752"),
+        consultar(74, "269:12850", "IPC292510"),
+        consultar(84, "269:12850", "IPC292512")
+      ]);
+
+    const ultimo = datos => datos[datos.length - 1];
+    const anterior = datos => datos[datos.length - 2];
+
+    const actual = ultimo(anual);
+
+    const mes = new Date(
+      Date.UTC(actual.Anyo, actual.FK_Periodo - 1, 1)
+    ).toLocaleDateString("es-ES", {
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC"
     });
 
-    if (!respuesta.ok) {
-      throw new Error("Error consultando el INE");
-    }
+    const historial = anual.slice(-12).map(dato => {
+      const sub = subAnual.find(item =>
+        item.Anyo === dato.Anyo &&
+        item.FK_Periodo === dato.FK_Periodo
+      );
 
-    const html = await respuesta.text();
-
-    const texto = html
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style[\s\S]*?<\/style>/gi, " ")
-      .replace(/<[^>]*>/g, " ")
-      .replace(/&nbsp;|&#160;/gi, " ")
-      .replace(/&aacute;/gi, "á")
-      .replace(/&eacute;/gi, "é")
-      .replace(/&iacute;/gi, "í")
-      .replace(/&oacute;/gi, "ó")
-      .replace(/&uacute;/gi, "ú")
-      .replace(/&ntilde;/gi, "ñ")
-      .replace(/&iquest;/gi, "¿")
-      .replace(/&amp;/gi, "&")
-      .replace(/\s+/g, " ");
-
-    const periodo = texto.match(
-      /Base 2025\s*(?:-|–)?\s*(Avance|Definitivo)?[.:]?\s*([A-Za-zÁÉÍÓÚáéíóúñÑ]+)\s+(20\d{2})/i
-    );
-
-    const tabla = texto.match(
-      /Indicador\s+Nota\s+Variación mensual\s+Variación anual([\s\S]{0,500})/i
-    );
-
-    if (!periodo || !tabla) {
-      throw new Error("No se han localizado los datos del IPC");
-    }
-
-    const general = tabla[1].match(
-      /[ÍI]ndice general\s+(-?\d+[,.]?\d*)\s+(-?\d+[,.]?\d*)/i
-    );
-
-    const subyacente = tabla[1].match(
-      /Inflación subyacente\s+\d*\s*(-?\d+[,.]?\d*)\s+(-?\d+[,.]?\d*)/i
-    );
-
-    if (!general || !subyacente) {
-      throw new Error("No se han podido leer los indicadores");
-    }
-
-    const numero = valor =>
-      Number(valor.replace(",", "."));
+      return {
+        periodo: `${dato.Anyo}-${String(dato.FK_Periodo).padStart(2, "0")}`,
+        ipc: dato.Valor,
+        subyacente: sub?.Valor ?? null
+      };
+    });
 
     return new Response(JSON.stringify({
       pais: "España",
-      ipcMensual: numero(general[1]),
-      ipcAnual: numero(general[2]),
-      subyacenteMensual: numero(subyacente[1]),
-      subyacenteAnual: numero(subyacente[2]),
-      periodo: periodo[2] + " " + periodo[3],
-      tipoDato: periodo[1] || "Publicado",
-      fuente: "Instituto Nacional de Estadística"
+      periodo: mes,
+      tipoDato: actual.FK_TipoDato === 3 ? "Avance" : "Definitivo",
+      ipcAnual: ultimo(anual).Valor,
+      ipcMensual: ultimo(mensual).Valor,
+      subyacenteAnual: ultimo(subAnual).Valor,
+      subyacenteMensual: ultimo(subMensual).Valor,
+      anterior: {
+        ipcAnual: anterior(anual)?.Valor ?? null,
+        ipcMensual: anterior(mensual)?.Valor ?? null,
+        subyacenteAnual: anterior(subAnual)?.Valor ?? null,
+        subyacenteMensual: anterior(subMensual)?.Valor ?? null
+      },
+      historial,
+      fuente: "Instituto Nacional de Estadística (INE)"
     }), {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",
         "Cache-Control": "no-store"
       }
     });
@@ -86,4 +100,3 @@ export default async () => {
     });
   }
 };
-
