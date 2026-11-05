@@ -7,9 +7,7 @@
 <title>JORKUM | Centro Económico</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -115,9 +113,7 @@ h1 {
   letter-spacing: 1px;
 }
 
-.main-value {
-  margin: 20px 0;
-}
+.main-value { margin: 20px 0; }
 
 .main-value small,
 .metric small {
@@ -177,6 +173,7 @@ h1 {
   width: 100%;
   height: 65px;
   display: block;
+  overflow: visible;
 }
 
 .chart-note {
@@ -216,23 +213,13 @@ footer {
 }
 
 @media (max-width: 850px) {
-  .dashboard {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 550px) {
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  header {
-    padding: 20px 5%;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
+  .dashboard { grid-template-columns: 1fr; }
+  header { padding: 20px 5%; }
+  h1 { font-size: 20px; }
 }
 </style>
 </head>
@@ -265,37 +252,37 @@ footer {
 
       <div class="main-value">
         <small>ÚLTIMO VALOR DIARIO</small>
-        <div class="value">--,-- %</div>
-        <div class="date">Fecha de publicación: pendiente</div>
+        <div class="value" id="euribor-value">--,-- %</div>
+        <div class="date" id="euribor-date">Cargando datos oficiales...</div>
       </div>
 
       <div class="metrics">
         <div class="metric">
           <small>MEDIA MENSUAL</small>
-          <strong>--,-- %</strong>
+          <strong id="media-mensual">--</strong>
         </div>
 
         <div class="metric">
           <small>MEDIA ANUAL</small>
-          <strong>--,-- %</strong>
+          <strong id="media-anual">--</strong>
         </div>
 
         <div class="metric">
           <small>MES ANTERIOR</small>
-          <strong>--,-- %</strong>
+          <strong id="mes-anterior">--</strong>
         </div>
 
         <div class="metric">
           <small>HACE UN AÑO</small>
-          <strong>--,-- %</strong>
+          <strong id="hace-un-ano">--</strong>
         </div>
       </div>
 
       <div class="chart-area">
         <div class="chart-title">EVOLUCIÓN · ÚLTIMOS 12 MESES</div>
 
-        <svg class="chart" viewBox="0 0 300 65"
-             preserveAspectRatio="none">
+        <svg class="chart" id="euribor-chart"
+             viewBox="0 0 300 65" preserveAspectRatio="none">
           <line x1="0" y1="10" x2="300" y2="10"
                 stroke="#29435c" stroke-dasharray="3 4"/>
           <line x1="0" y1="32" x2="300" y2="32"
@@ -304,13 +291,13 @@ footer {
                 stroke="#29435c" stroke-dasharray="3 4"/>
         </svg>
 
-        <div class="chart-note">
-          Gráfica pendiente de conexión con datos oficiales.
+        <div class="chart-note" id="chart-note">
+          Esperando datos del Banco de España.
         </div>
       </div>
 
-      <div class="source">
-        FUENTE: PENDIENTE DE CONEXIÓN
+      <div class="source" id="euribor-source">
+        FUENTE: BANCO DE ESPAÑA
       </div>
     </article>
 
@@ -344,6 +331,169 @@ function updateClock() {
 
 updateClock();
 setInterval(updateClock, 1000);
+
+function formato(valor) {
+  if (valor === null || valor === undefined ||
+      !Number.isFinite(Number(valor))) {
+    return "No disponible";
+  }
+
+  return Number(valor).toFixed(3) + " %";
+}
+
+function formatoFecha(fecha) {
+  if (!fecha) return "--";
+
+  const partes = fecha.substring(0, 10).split("-");
+
+  if (partes.length !== 3) return fecha;
+
+  return partes[2] + "/" + partes[1] + "/" + partes[0];
+}
+
+function dibujarGrafica(datos) {
+  const svg = document.getElementById("euribor-chart");
+
+  const valores = datos
+    .map(d => Number(d.valor))
+    .filter(Number.isFinite);
+
+  if (valores.length < 2) {
+    document.getElementById("chart-note").textContent =
+      "Gráfica no disponible.";
+    return;
+  }
+
+  const minimo = Math.min(...valores);
+  const maximo = Math.max(...valores);
+  const rango = maximo - minimo || 1;
+
+  const puntos = valores.map((valor, i) => {
+    const x = (i / (valores.length - 1)) * 300;
+    const y = 54 - ((valor - minimo) / rango) * 44;
+    return `${x},${y}`;
+  }).join(" ");
+
+  svg.innerHTML = `
+    <line x1="0" y1="10" x2="300" y2="10"
+      stroke="#29435c" stroke-dasharray="3 4"/>
+    <line x1="0" y1="32" x2="300" y2="32"
+      stroke="#29435c" stroke-dasharray="3 4"/>
+    <line x1="0" y1="54" x2="300" y2="54"
+      stroke="#29435c" stroke-dasharray="3 4"/>
+    <polyline points="${puntos}"
+      fill="none" stroke="#d7b66c"
+      stroke-width="2.5" stroke-linecap="round"
+      stroke-linejoin="round"/>
+    <circle cx="300" cy="${54 - ((valores[valores.length - 1] - minimo) / rango) * 44}"
+      r="3" fill="#d7b66c"/>
+  `;
+
+  document.getElementById("chart-note").textContent =
+    "Media mensual · últimos 12 meses";
+}
+
+async function cargarEuribor() {
+  const fechaElemento = document.getElementById("euribor-date");
+
+  try {
+    const respuesta = await fetch(
+      "/.netlify/functions/euribor",
+      { cache: "no-store" }
+    );
+
+    if (!respuesta.ok) {
+      throw new Error("Error HTTP " + respuesta.status);
+    }
+
+    const datos = await respuesta.json();
+
+    if (!datos || !datos.fecha ||
+        !Number.isFinite(Number(datos.ultimoValor))) {
+      throw new Error("Datos incompletos");
+    }
+
+    document.getElementById("euribor-value").textContent =
+      formato(datos.ultimoValor);
+
+    fechaElemento.textContent =
+      "Fecha del dato: " + formatoFecha(datos.fecha);
+
+    document.getElementById("media-mensual").textContent =
+      formato(datos.mediaMensual);
+
+    document.getElementById("media-anual").textContent =
+      formato(datos.mediaAnual);
+
+    document.getElementById("mes-anterior").textContent =
+      formato(datos.mediaMesAnterior);
+
+    const fechaAnual = new Date(datos.fecha + "T12:00:00");
+    fechaAnual.setFullYear(fechaAnual.getFullYear() - 1);
+
+    const fechaObjetivo = fechaAnual.toISOString().substring(0, 10);
+
+    const historicoRespuesta = await fetch(
+      "https://app.bde.es/bierest/resources/srdatosapp/listaSeries" +
+      "?idioma=es&series=D_DNBAF172&rango=36M",
+      { cache: "no-store" }
+    );
+
+    if (!historicoRespuesta.ok) {
+      throw new Error("No se pudo consultar el histórico anual");
+    }
+
+    const historico = await historicoRespuesta.json();
+    const serie = Array.isArray(historico)
+      ? historico.find(item => item.serie === "D_DNBAF172")
+      : historico;
+
+    let valorAnual = null;
+
+    if (serie && serie.fechas && serie.valores) {
+      const registros = serie.fechas.map((fecha, i) => ({
+        fecha: fecha.substring(0, 10),
+        valor: Number(serie.valores[i])
+      }));
+
+      const anteriores = registros
+        .filter(d => d.fecha <= fechaObjetivo &&
+          Number.isFinite(d.valor));
+
+      if (anteriores.length) {
+        anteriores.sort((a, b) =>
+          b.fecha.localeCompare(a.fecha)
+        );
+
+        valorAnual = anteriores[0].valor;
+      }
+    }
+
+    document.getElementById("hace-un-ano").textContent =
+      formato(valorAnual);
+
+    if (Array.isArray(datos.grafica)) {
+      dibujarGrafica(datos.grafica);
+    }
+
+    document.getElementById("euribor-source").textContent =
+      "FUENTE: BANCO DE ESPAÑA · SERIE D_DNBAF172";
+
+  } catch (error) {
+    fechaElemento.textContent =
+      "No se han podido actualizar los datos.";
+
+    document.getElementById("euribor-source").textContent =
+      "ERROR DE CONEXIÓN · BANCO DE ESPAÑA";
+
+    document.getElementById("chart-note").textContent =
+      "Gráfica no disponible.";
+
+    console.error("Error Euríbor:", error);
+  }
+}
+
+cargarEuribor();
 </script>
 
 </body>
