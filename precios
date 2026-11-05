@@ -51,18 +51,23 @@
   <h1>JORKUM CORPORATION</h1>
   <p>CENTRO DE INDICADORES ECONÓMICOS</p>
 
-  <div class="panel">
-    <h2>EURÍBOR A 12 MESES</h2>
+<div class="panel">
+  <h2>EURÍBOR A 12 MESES</h2>
 
-    <div class="eudi-wdgra">
-      <script src="https://euribor-hoy.es/embed/chart.js"></script>
-      <p class="edg-copy">
-        <a href="https://www.euribordiario.es/"
-           rel="noopener" target="_blank">
-          Euríbor® Mensual
-        </a>
-      </p>
-    </div>
+  <iframe
+    src="https://euriborhoy.com/widget/"
+    title="Euríbor actualizado"
+    width="100%"
+    height="180"
+    style="border:0; background:white;"
+    loading="eager">
+  </iframe>
+
+  <p>
+    Datos de <a href="https://euriborhoy.com/widget/"
+    target="_blank" rel="noopener">EuriborHoy</a>
+  </p>
+</div>
 
   </div>
 
