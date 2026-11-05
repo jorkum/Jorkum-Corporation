@@ -8,178 +8,231 @@
 
 <style>
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    background:
-        radial-gradient(ellipse at 50% 0%, #183653 0%, transparent 55%),
-        linear-gradient(135deg, #050d18, #0a192a 55%, #06101c);
-    color: #edf3fa;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #edf4fc;
+  background:
+    radial-gradient(ellipse at 15% 10%, #173653 0%, transparent 40%),
+    radial-gradient(ellipse at 85% 85%, #102a43 0%, transparent 40%),
+    #07111e;
 }
 
-/* CABECERA */
-
 header {
-    padding: 25px 5%;
-    border-bottom: 1px solid #b99a58;
-    background: rgba(3, 10, 19, 0.85);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
+  padding: 25px 5%;
+  border-bottom: 1px solid #263c52;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .logo {
-    color: #d6b56d;
-    font-size: 23px;
-    font-weight: bold;
-    letter-spacing: 4px;
+  color: #d7b66c;
+  font-size: 21px;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 
-.subtitulo {
-    color: #8da5bd;
-    font-size: 10px;
-    letter-spacing: 3px;
-    margin-top: 7px;
+.subtitle {
+  color: #8299b0;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-top: 5px;
 }
 
-.reloj {
-    text-align: right;
-    color: #d6b56d;
-    font-size: 14px;
+.clock {
+  color: #a9bdd1;
+  font-size: 13px;
 }
 
-/* TITULO PRINCIPAL */
-
-.contenedor {
-    width: 90%;
-    max-width: 1400px;
-    margin: 40px auto;
+main {
+  width: 90%;
+  max-width: 1400px;
+  margin: 35px auto;
 }
 
-.titulo {
-    text-align: center;
-    margin-bottom: 40px;
+h1 {
+  font-size: 25px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
-.titulo h1 {
-    color: #ffffff;
-    font-size: 30px;
-    letter-spacing: 5px;
-    margin-bottom: 12px;
+.intro {
+  color: #849bb1;
+  font-size: 13px;
+  margin-bottom: 30px;
 }
 
-.titulo p {
-    color: #8da5bd;
-    font-size: 12px;
-    letter-spacing: 3px;
+.section-title {
+  color: #d7b66c;
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
 }
 
-/* PANEL CENTRAL */
-
-.panel-principal {
-    min-height: 260px;
-    border: 1px solid #b99a58;
-    border-radius: 12px;
-    background: linear-gradient(135deg,
-        rgba(19, 43, 67, 0.95),
-        rgba(5, 15, 27, 0.98));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 35px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
-.panel-principal h2 {
-    color: #d6b56d;
-    font-size: 25px;
-    letter-spacing: 4px;
+.card {
+  background: linear-gradient(145deg, #12283e, #0c1b2b);
+  border: 1px solid #29435c;
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 0;
+  box-shadow: 0 10px 30px #00000030;
 }
 
-.panel-principal p {
-    color: #91a9c0;
-    font-size: 13px;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #29435c;
 }
 
-/* ZONAS DE INDICADORES */
-
-.seccion-titulo {
-    color: #d6b56d;
-    font-size: 14px;
-    letter-spacing: 3px;
-    margin: 40px 0 18px;
-    border-bottom: 1px solid rgba(185,154,88,0.4);
-    padding-bottom: 12px;
+.card-header h2 {
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin: 0;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+.tag {
+  color: #d7b66c;
+  border: 1px solid #806d43;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 9px;
+  letter-spacing: 1px;
 }
 
-.tarjeta {
-    min-height: 145px;
-    padding: 22px;
-    border: 1px solid #29445e;
-    border-radius: 10px;
-    background: rgba(13, 31, 49, 0.85);
-    transition: 0.3s;
+.main-value {
+  margin: 20px 0;
 }
 
-.tarjeta:hover {
-    border-color: #d6b56d;
-    transform: translateY(-3px);
+.main-value small,
+.metric small {
+  display: block;
+  color: #8da4ba;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
 }
 
-.tarjeta h3 {
-    color: #d6b56d;
-    font-size: 14px;
-    letter-spacing: 2px;
+.value {
+  color: #d7b66c;
+  font-size: 37px;
+  font-weight: bold;
 }
 
-.tarjeta p {
-    color: #718ba5;
-    font-size: 12px;
+.date {
+  color: #8299b0;
+  font-size: 11px;
+  margin-top: 7px;
 }
 
-/* PIE */
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.metric {
+  background: #172f47;
+  border: 1px solid #29435c;
+  padding: 12px;
+  border-radius: 7px;
+}
+
+.metric strong {
+  font-size: 18px;
+  color: #edf4fc;
+}
+
+.chart-area {
+  margin-top: 18px;
+  padding: 12px;
+  background: #10253a;
+  border-radius: 7px;
+  border: 1px solid #29435c;
+}
+
+.chart-title {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #a9bdd1;
+  margin-bottom: 12px;
+}
+
+.chart {
+  width: 100%;
+  height: 65px;
+  display: block;
+}
+
+.chart-note {
+  color: #718ba4;
+  font-size: 10px;
+  margin-top: 8px;
+}
+
+.source {
+  color: #718ba4;
+  font-size: 10px;
+  margin-top: 15px;
+}
+
+.empty-card {
+  min-height: 260px;
+  border: 1px dashed #29435c;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #536d85;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 20px;
+}
 
 footer {
-    margin-top: 60px;
-    padding: 25px;
-    text-align: center;
-    border-top: 1px solid #29445e;
-    color: #718ba5;
-    font-size: 11px;
-    letter-spacing: 2px;
+  border-top: 1px solid #263c52;
+  margin-top: 60px;
+  padding: 20px;
+  text-align: center;
+  color: #617991;
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 
-@media (max-width: 750px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 850px) {
+  .dashboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-    .titulo h1 {
-        font-size: 22px;
-    }
+@media (max-width: 550px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
 
-    header {
-        justify-content: center;
-        text-align: center;
-    }
+  header {
+    padding: 20px 5%;
+  }
 
-    .reloj {
-        text-align: center;
-    }
+  h1 {
+    font-size: 20px;
+  }
 }
 </style>
 </head>
@@ -187,102 +240,110 @@ footer {
 <body>
 
 <header>
-    <div>
-        <div class="logo">JORKUM CORPORATION</div>
-        <div class="subtitulo">ECONOMIC INTELLIGENCE</div>
-    </div>
-
-    <div class="reloj">
-        CENTRO DE CONTROL<br>
-        <span id="fecha"></span>
-    </div>
+  <div>
+    <div class="logo">JORKUM CORPORATION</div>
+    <div class="subtitle">ECONOMIC INTELLIGENCE</div>
+  </div>
+  <div class="clock" id="clock">--</div>
 </header>
 
-<main class="contenedor">
+<main>
+  <h1>CENTRO ECONÓMICO</h1>
+  <div class="intro">
+    Panel de seguimiento de indicadores económicos y financieros
+  </div>
 
-    <section class="titulo">
-        <h1>CENTRO ECONÓMICO</h1>
-        <p>INDICADORES · MERCADOS · EVOLUCIÓN FINANCIERA</p>
-    </section>
+  <div class="section-title">01 / INDICADORES PRINCIPALES</div>
 
-    <section class="panel-principal">
-        <h2>JORKUM FINANCIAL CENTER</h2>
-        <p>PLATAFORMA DE ANÁLISIS ECONÓMICO</p>
-        <p>SISTEMA DE INDICADORES EN PREPARACIÓN</p>
-    </section>
+  <section class="dashboard">
 
-    <h2 class="seccion-titulo">01 · INDICADORES PRINCIPALES</h2>
+    <article class="card">
+      <div class="card-header">
+        <h2>EURÍBOR</h2>
+        <span class="tag">12 MESES</span>
+      </div>
 
-    <section class="grid">
-        <article class="tarjeta">
-            <h3>EURÍBOR</h3>
-            <p>Tipo de referencia a 12 meses</p>
-        </article>
+      <div class="main-value">
+        <small>ÚLTIMO VALOR DIARIO</small>
+        <div class="value">--,-- %</div>
+        <div class="date">Fecha de publicación: pendiente</div>
+      </div>
 
-        <article class="tarjeta">
-            <h3>VERALLIA</h3>
-            <p>Acciones · VRLA</p>
-        </article>
+      <div class="metrics">
+        <div class="metric">
+          <small>MEDIA MENSUAL</small>
+          <strong>--,-- %</strong>
+        </div>
 
-        <article class="tarjeta">
-            <h3>IPC ESPAÑA</h3>
-            <p>Índice de precios al consumo</p>
-        </article>
-    </section>
+        <div class="metric">
+          <small>MEDIA ANUAL</small>
+          <strong>--,-- %</strong>
+        </div>
 
-    <h2 class="seccion-titulo">02 · BANCOS CENTRALES Y MERCADOS</h2>
+        <div class="metric">
+          <small>MES ANTERIOR</small>
+          <strong>--,-- %</strong>
+        </div>
 
-    <section class="grid">
-        <article class="tarjeta">
-            <h3>BANCO CENTRAL EUROPEO</h3>
-            <p>Tipos de interés oficiales</p>
-        </article>
+        <div class="metric">
+          <small>HACE UN AÑO</small>
+          <strong>--,-- %</strong>
+        </div>
+      </div>
 
-        <article class="tarjeta">
-            <h3>IBEX 35</h3>
-            <p>Mercado bursátil español</p>
-        </article>
+      <div class="chart-area">
+        <div class="chart-title">EVOLUCIÓN · ÚLTIMOS 12 MESES</div>
 
-        <article class="tarjeta">
-            <h3>BOLSAS EUROPEAS</h3>
-            <p>DAX · CAC 40 · EURO STOXX 50</p>
-        </article>
-    </section>
+        <svg class="chart" viewBox="0 0 300 65"
+             preserveAspectRatio="none">
+          <line x1="0" y1="10" x2="300" y2="10"
+                stroke="#29435c" stroke-dasharray="3 4"/>
+          <line x1="0" y1="32" x2="300" y2="32"
+                stroke="#29435c" stroke-dasharray="3 4"/>
+          <line x1="0" y1="54" x2="300" y2="54"
+                stroke="#29435c" stroke-dasharray="3 4"/>
+        </svg>
 
-    <h2 class="seccion-titulo">03 · ECONOMÍA Y ENERGÍA</h2>
+        <div class="chart-note">
+          Gráfica pendiente de conexión con datos oficiales.
+        </div>
+      </div>
 
-    <section class="grid">
-        <article class="tarjeta">
-            <h3>DEUDA ESPAÑOLA</h3>
-            <p>Bonos a 10 años</p>
-        </article>
+      <div class="source">
+        FUENTE: PENDIENTE DE CONEXIÓN
+      </div>
+    </article>
 
-        <article class="tarjeta">
-            <h3>ENERGÍA</h3>
-            <p>Electricidad · Gas · Petróleo</p>
-        </article>
+    <div class="empty-card">
+      SIGUIENTE INDICADOR<br><br>EN PREPARACIÓN
+    </div>
 
-        <article class="tarjeta">
-            <h3>ECONOMÍA ESPAÑOLA</h3>
-            <p>PIB · Empleo · Deuda pública</p>
-        </article>
-    </section>
+    <div class="empty-card">
+      SIGUIENTE INDICADOR<br><br>EN PREPARACIÓN
+    </div>
 
+  </section>
 </main>
 
 <footer>
-    JORKUM CORPORATION © 2026 · CENTRO DE INTELIGENCIA ECONÓMICA
+  JORKUM CORPORATION · ECONOMIC INTELLIGENCE
 </footer>
 
 <script>
-function actualizarFecha() {
-    const ahora = new Date();
-    document.getElementById("fecha").textContent =
-        ahora.toLocaleString("es-ES");
+function updateClock() {
+  const now = new Date();
+
+  document.getElementById("clock").textContent =
+    now.toLocaleDateString("es-ES") + " · " +
+    now.toLocaleTimeString("es-ES", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
 }
 
-actualizarFecha();
-setInterval(actualizarFecha, 1000);
+updateClock();
+setInterval(updateClock, 1000);
 </script>
 
 </body>
