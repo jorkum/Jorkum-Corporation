@@ -247,16 +247,15 @@ footer {
 
       <div class="unidad">Evolución del Euríbor a 12 meses</div>
 
-      <div class="grafica-euribor">
-        <div class="eudi-wdgra">
-          <script src="https://euribor-hoy.es/embed/chart.js"></script>
-          <p class="edg-copy">
-            <a href="https://www.euribordiario.es/" target="_blank">
-              Euríbor mensual · Fuente
-            </a>
-          </p>
-        </div>
-      </div>
+  <div class="grafica-euribor" style="width:100%; min-height:400px; overflow:visible;">
+  <div class="eudi-wdgra">
+    <script src="https://euribor-hoy.es/embed/chart.js"></script>
+    <p class="edg-copy">
+      <a href="https://www.euribordiario.es/" rel="noopener" target="_blank">
+        Euríbor® Mensual
+      </a>
+    </p>
+  </div>
 
       <span class="pendiente">● GRÁFICA EXTERNA</span>
     </article>
