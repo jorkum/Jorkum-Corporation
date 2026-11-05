@@ -4,204 +4,366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JORKUM CORPORATION</title>
+<title>JORKUM CORPORATION | Centro de control</title>
 
 <style>
-* {box-sizing:border-box;margin:0;padding:0}
-
-body {
- background:radial-gradient(circle at top,#15243a,#070b12 65%,#030508);
- color:white;
- font-family:Arial,sans-serif;
- min-height:100vh;
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
+body {
+  background:#080e18;
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
+
+/* NOTICIAS */
 .ticker {
- display:flex;
- height:46px;
- background:#101722;
- border-bottom:1px solid #b89550;
- overflow:hidden;
- align-items:center;
+  height:43px;
+  display:flex;
+  align-items:center;
+  background:#101a29;
+  border-bottom:1px solid #b89550;
+  overflow:hidden;
 }
 
 .ticker-label {
- background:#b89550;
- color:#101010;
- font-weight:bold;
- padding:15px;
- white-space:nowrap;
+  background:#b89550;
+  color:#080e18;
+  font-weight:bold;
+  padding:14px;
+  font-size:12px;
+  white-space:nowrap;
+  z-index:2;
 }
 
-.ticker-track {overflow:hidden;flex:1;white-space:nowrap}
+.ticker-track {
+  flex:1;
+  overflow:hidden;
+  white-space:nowrap;
+}
 
 .ticker-text {
- display:inline-block;
- color:#e7c77b;
- letter-spacing:2px;
- font-size:13px;
- animation:move 30s linear infinite;
+  display:inline-block;
+  color:#e7c77b;
+  font-size:12px;
+  letter-spacing:2px;
+  animation:move 35s linear infinite;
 }
 
 @keyframes move {
- from {transform:translateX(100%)}
- to {transform:translateX(-100%)}
+  from {transform:translateX(100%)}
+  to {transform:translateX(-100%)}
 }
 
+/* CABECERA */
 header {
- text-align:center;
- padding:65px 20px 45px;
+  padding:35px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #26374c;
+  flex-wrap:wrap;
+  gap:20px;
 }
 
-h1 {
- color:#e7c77b;
- font-size:clamp(35px,6vw,60px);
- letter-spacing:8px;
- text-shadow:0 0 20px #b89550;
+.logo {
+  font-size:27px;
+  letter-spacing:5px;
+  color:#e7c77b;
+  font-weight:bold;
 }
 
-.subtitle {
- letter-spacing:6px;
- color:#aeb9ca;
- margin-top:12px;
- font-size:13px;
+.logo span {
+  display:block;
+  font-size:10px;
+  letter-spacing:6px;
+  color:#91a4bb;
+  margin-top:7px;
 }
 
-.line {
- width:150px;
- height:2px;
- background:#b89550;
- margin:25px auto;
+.clock {
+  text-align:right;
+  color:#e7c77b;
+  font-size:19px;
+}
+
+.clock small {
+  display:block;
+  color:#91a4bb;
+  font-size:11px;
+  margin-top:6px;
+}
+
+/* CONTENIDO */
+main {
+  max-width:1250px;
+  margin:auto;
+  padding:40px 25px;
 }
 
 .welcome {
- color:#b9c7da;
- letter-spacing:3px;
- font-size:13px;
+  margin-bottom:35px;
 }
 
-main {
- max-width:1050px;
- margin:auto;
- padding:20px;
+.welcome h2 {
+  color:#fff;
+  font-size:25px;
+  letter-spacing:2px;
 }
 
+.welcome p {
+  color:#8495aa;
+  margin-top:10px;
+  font-size:13px;
+}
+
+.status {
+  color:#69d9a1;
+  font-size:11px;
+  margin-top:15px;
+}
+
+/* PANELES */
 .section-title {
- color:#e7c77b;
- text-align:center;
- letter-spacing:4px;
- margin-bottom:30px;
+  color:#e7c77b;
+  font-size:13px;
+  letter-spacing:3px;
+  margin-bottom:20px;
 }
 
 .grid {
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
 }
 
 .card {
- background:linear-gradient(145deg,#17263a,#0b111c);
- border:1px solid #34465e;
- padding:35px 20px;
- text-align:center;
- border-radius:8px;
- transition:.3s;
- cursor:pointer;
+  background:linear-gradient(145deg,#17263b,#0d1624);
+  border:1px solid #2b405b;
+  border-radius:7px;
+  padding:27px;
+  min-height:170px;
+  transition:.3s;
 }
 
 .card:hover {
- border-color:#e7c77b;
- transform:translateY(-5px);
- box-shadow:0 0 20px #b8955040;
+  border-color:#d5ad5b;
+  transform:translateY(-4px);
+  box-shadow:0 8px 25px #0008;
 }
 
-.icon {
- font-size:42px;
- margin-bottom:18px;
+.card .icon {
+  font-size:28px;
+  margin-bottom:20px;
 }
 
 .card h3 {
- color:#e7c77b;
- letter-spacing:2px;
- font-size:15px;
+  color:#e7c77b;
+  font-size:14px;
+  letter-spacing:2px;
 }
 
 .card p {
- color:#9baabd;
- margin-top:12px;
- font-size:12px;
- line-height:1.6;
+  color:#91a2b7;
+  font-size:12px;
+  line-height:1.7;
+  margin-top:12px;
+}
+
+.card a {
+  display:inline-block;
+  margin-top:17px;
+  color:#e7c77b;
+  font-size:11px;
+  text-decoration:none;
+  letter-spacing:1px;
+}
+
+.card a:hover {
+  color:white;
+}
+
+/* ZONA INFERIOR */
+.bottom {
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.panel {
+  background:#101a29;
+  border:1px solid #26374c;
+  padding:25px;
+  border-radius:7px;
+}
+
+.panel h3 {
+  color:#e7c77b;
+  font-size:13px;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.panel p {
+  color:#91a2b7;
+  font-size:12px;
+  line-height:2;
 }
 
 footer {
- text-align:center;
- padding:55px 15px 25px;
- color:#68768a;
- font-size:11px;
- letter-spacing:2px;
+  border-top:1px solid #26374c;
+  margin-top:45px;
+  padding:25px;
+  text-align:center;
+  color:#687b91;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+@media(max-width:650px) {
+  header {
+    padding:25px;
+  }
+  .clock {
+    text-align:left;
+  }
+  .bottom {
+    grid-template-columns:1fr;
+  }
+  main {
+    padding:30px 18px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- FRANJA DE NOTICIAS -->
 <div class="ticker">
- <div class="ticker-label">JORKUM LIVE</div>
- <div class="ticker-track">
-  <div class="ticker-text">
-   ★ BIENVENIDOS A JORKUM CORPORATION
-   ◆ TECNOLOGÍA E INNOVACIÓN
-   ◆ SEGUIMIENTO DE PRECIOS
-   ◆ INTELIGENCIA ARTIFICIAL
-   ◆ NUEVOS PROYECTOS
-   ◆ SISTEMAS Y DESARROLLO
-   ◆ BIENVENIDOS A JORKUM CORPORATION
+  <div class="ticker-label">JORKUM LIVE</div>
+  <div class="ticker-track">
+    <div class="ticker-text">
+      ★ BIENVENIDOS A JORKUM CORPORATION
+      ◆ TECNOLOGÍA E INNOVACIÓN
+      ◆ CONTROL DE PRECIOS
+      ◆ NUEVOS PROYECTOS
+      ◆ SISTEMAS INFORMÁTICOS
+      ◆ INTELIGENCIA ARTIFICIAL
+      ◆ BIENVENIDOS A JORKUM CORPORATION
+    </div>
   </div>
- </div>
 </div>
 
+<!-- CABECERA -->
 <header>
- <h1>JORKUM</h1>
- <div class="subtitle">CORPORATION</div>
- <div class="line"></div>
- <div class="welcome">CENTRO DE OPERACIONES</div>
+  <div class="logo">
+    JORKUM
+    <span>CORPORATION</span>
+  </div>
+
+  <div class="clock">
+    <div id="hora">00:00:00</div>
+    <small id="fecha">Cargando fecha...</small>
+  </div>
 </header>
 
 <main>
- <h2 class="section-title">NUESTROS DEPARTAMENTOS</h2>
 
- <div class="grid">
+  <!-- BIENVENIDA -->
+  <section class="welcome">
+    <h2>CENTRO DE OPERACIONES</h2>
+    <p>Panel central de gestión y tecnología de Jorkum Corporation.</p>
+    <div class="status">● SISTEMA OPERATIVO · CONEXIÓN ACTIVA</div>
+  </section>
 
-  <div class="card">
-   <div class="icon">💻</div>
-   <h3>TECNOLOGÍA</h3>
-   <p>Equipos informáticos y componentes.</p>
+  <!-- DEPARTAMENTOS -->
+  <h3 class="section-title">DEPARTAMENTOS PRINCIPALES</h3>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">▣</div>
+      <h3>TECNOLOGÍA</h3>
+      <p>Equipos informáticos, hardware, componentes y configuraciones.</p>
+      <a href="#">EXPLORAR →</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">▥</div>
+      <h3>CONTROL DE PRECIOS</h3>
+      <p>Seguimiento de productos, ofertas y evolución de precios.</p>
+      <a href="precios.html">ACCEDER →</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">◈</div>
+      <h3>INTELIGENCIA ARTIFICIAL</h3>
+      <p>Herramientas inteligentes y nuevas tecnologías.</p>
+      <a href="#">EXPLORAR →</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">⚙</div>
+      <h3>SISTEMAS</h3>
+      <p>Gestión, mantenimiento y configuración de sistemas.</p>
+      <a href="#">EXPLORAR →</a>
+    </div>
+
   </div>
 
-  <div class="card" onclick="location.href='precios.html'">
-   <div class="icon">📊</div>
-   <h3>CONTROL DE PRECIOS</h3>
-   <p>Seguimiento de ofertas y evolución de precios.</p>
+  <!-- INFORMACIÓN -->
+  <div class="bottom">
+
+    <div class="panel">
+      <h3>▣ CENTRO DE NOTICIAS</h3>
+      <p>
+        Bienvenido al centro de operaciones.<br>
+        Próximamente nuevas noticias y actualizaciones.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3>◈ ESTADO DEL SISTEMA</h3>
+      <p>
+        Plataforma: JORKUM CORPORATION<br>
+        Estado: Operativo<br>
+        Versión: 1.0<br>
+        Actualización: En desarrollo
+      </p>
+    </div>
+
   </div>
 
-  <div class="card">
-   <div class="icon">🤖</div>
-   <h3>INTELIGENCIA ARTIFICIAL</h3>
-   <p>Innovación y sistemas inteligentes.</p>
-  </div>
-
-  <div class="card">
-   <div class="icon">⚙️</div>
-   <h3>SISTEMAS</h3>
-   <p>Gestión y configuración de proyectos.</p>
-  </div>
-
- </div>
 </main>
 
 <footer>
- JORKUM CORPORATION · ADVANCED TECHNOLOGY SYSTEMS
+  JORKUM CORPORATION · ADVANCED TECHNOLOGY SYSTEMS
 </footer>
+
+<script>
+function actualizarReloj() {
+  const ahora = new Date();
+
+  document.getElementById("hora").textContent =
+    ahora.toLocaleTimeString("es-ES");
+
+  document.getElementById("fecha").textContent =
+    ahora.toLocaleDateString("es-ES", {
+      weekday:"long",
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    });
+}
+
+actualizarReloj();
+setInterval(actualizarReloj,1000);
+</script>
 
 </body>
 </html>
