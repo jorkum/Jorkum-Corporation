@@ -4,66 +4,286 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JORKUM | Euríbor</title>
+<title>JORKUM | Centro Económico</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  padding: 25px 15px;
-  background: #071321;
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 50% 0%, #183653 0%, transparent 55%),
+        linear-gradient(135deg, #050d18, #0a192a 55%, #06101c);
+    color: #edf3fa;
+    font-family: Arial, sans-serif;
 }
-h1 {
-  color: #d6b56d;
-  letter-spacing: 3px;
+
+/* CABECERA */
+
+header {
+    padding: 25px 5%;
+    border-bottom: 1px solid #b99a58;
+    background: rgba(3, 10, 19, 0.85);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
-.panel {
-  max-width: 850px;
-  margin: 35px auto;
-  padding: 25px;
-  background: #10243a;
-  border: 1px solid #b99a58;
-  border-radius: 12px;
+
+.logo {
+    color: #d6b56d;
+    font-size: 23px;
+    font-weight: bold;
+    letter-spacing: 4px;
 }
-h2 {
-  color: #d6b56d;
+
+.subtitulo {
+    color: #8da5bd;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 7px;
 }
-iframe {
-  width: 100%;
-  height: 200px;
-  border: none;
-  background: white;
+
+.reloj {
+    text-align: right;
+    color: #d6b56d;
+    font-size: 14px;
 }
-a {
-  color: #d6b56d;
+
+/* TITULO PRINCIPAL */
+
+.contenedor {
+    width: 90%;
+    max-width: 1400px;
+    margin: 40px auto;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.titulo h1 {
+    color: #ffffff;
+    font-size: 30px;
+    letter-spacing: 5px;
+    margin-bottom: 12px;
+}
+
+.titulo p {
+    color: #8da5bd;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+/* PANEL CENTRAL */
+
+.panel-principal {
+    min-height: 260px;
+    border: 1px solid #b99a58;
+    border-radius: 12px;
+    background: linear-gradient(135deg,
+        rgba(19, 43, 67, 0.95),
+        rgba(5, 15, 27, 0.98));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 35px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.panel-principal h2 {
+    color: #d6b56d;
+    font-size: 25px;
+    letter-spacing: 4px;
+}
+
+.panel-principal p {
+    color: #91a9c0;
+    font-size: 13px;
+}
+
+/* ZONAS DE INDICADORES */
+
+.seccion-titulo {
+    color: #d6b56d;
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin: 40px 0 18px;
+    border-bottom: 1px solid rgba(185,154,88,0.4);
+    padding-bottom: 12px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.tarjeta {
+    min-height: 145px;
+    padding: 22px;
+    border: 1px solid #29445e;
+    border-radius: 10px;
+    background: rgba(13, 31, 49, 0.85);
+    transition: 0.3s;
+}
+
+.tarjeta:hover {
+    border-color: #d6b56d;
+    transform: translateY(-3px);
+}
+
+.tarjeta h3 {
+    color: #d6b56d;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.tarjeta p {
+    color: #718ba5;
+    font-size: 12px;
+}
+
+/* PIE */
+
+footer {
+    margin-top: 60px;
+    padding: 25px;
+    text-align: center;
+    border-top: 1px solid #29445e;
+    color: #718ba5;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 750px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .titulo h1 {
+        font-size: 22px;
+    }
+
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .reloj {
+        text-align: center;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<h1>JORKUM CORPORATION</h1>
-<p>CENTRO DE INDICADORES ECONÓMICOS</p>
+<header>
+    <div>
+        <div class="logo">JORKUM CORPORATION</div>
+        <div class="subtitulo">ECONOMIC INTELLIGENCE</div>
+    </div>
 
-<div class="panel">
-  <h2>EURÍBOR A 12 MESES</h2>
+    <div class="reloj">
+        CENTRO DE CONTROL<br>
+        <span id="fecha"></span>
+    </div>
+</header>
 
-  <iframe
-    src="https://euriborhoy.com/widget/"
-    title="Widget Euríbor"
-    loading="eager">
-  </iframe>
+<main class="contenedor">
 
-  <p>
-    Fuente:
-    <a href="https://euriborhoy.com/widget/"
-       target="_blank" rel="noopener">
-       EuriborHoy
-    </a>
-  </p>
-</div>
+    <section class="titulo">
+        <h1>CENTRO ECONÓMICO</h1>
+        <p>INDICADORES · MERCADOS · EVOLUCIÓN FINANCIERA</p>
+    </section>
+
+    <section class="panel-principal">
+        <h2>JORKUM FINANCIAL CENTER</h2>
+        <p>PLATAFORMA DE ANÁLISIS ECONÓMICO</p>
+        <p>SISTEMA DE INDICADORES EN PREPARACIÓN</p>
+    </section>
+
+    <h2 class="seccion-titulo">01 · INDICADORES PRINCIPALES</h2>
+
+    <section class="grid">
+        <article class="tarjeta">
+            <h3>EURÍBOR</h3>
+            <p>Tipo de referencia a 12 meses</p>
+        </article>
+
+        <article class="tarjeta">
+            <h3>VERALLIA</h3>
+            <p>Acciones · VRLA</p>
+        </article>
+
+        <article class="tarjeta">
+            <h3>IPC ESPAÑA</h3>
+            <p>Índice de precios al consumo</p>
+        </article>
+    </section>
+
+    <h2 class="seccion-titulo">02 · BANCOS CENTRALES Y MERCADOS</h2>
+
+    <section class="grid">
+        <article class="tarjeta">
+            <h3>BANCO CENTRAL EUROPEO</h3>
+            <p>Tipos de interés oficiales</p>
+        </article>
+
+        <article class="tarjeta">
+            <h3>IBEX 35</h3>
+            <p>Mercado bursátil español</p>
+        </article>
+
+        <article class="tarjeta">
+            <h3>BOLSAS EUROPEAS</h3>
+            <p>DAX · CAC 40 · EURO STOXX 50</p>
+        </article>
+    </section>
+
+    <h2 class="seccion-titulo">03 · ECONOMÍA Y ENERGÍA</h2>
+
+    <section class="grid">
+        <article class="tarjeta">
+            <h3>DEUDA ESPAÑOLA</h3>
+            <p>Bonos a 10 años</p>
+        </article>
+
+        <article class="tarjeta">
+            <h3>ENERGÍA</h3>
+            <p>Electricidad · Gas · Petróleo</p>
+        </article>
+
+        <article class="tarjeta">
+            <h3>ECONOMÍA ESPAÑOLA</h3>
+            <p>PIB · Empleo · Deuda pública</p>
+        </article>
+    </section>
+
+</main>
+
+<footer>
+    JORKUM CORPORATION © 2026 · CENTRO DE INTELIGENCIA ECONÓMICA
+</footer>
+
+<script>
+function actualizarFecha() {
+    const ahora = new Date();
+    document.getElementById("fecha").textContent =
+        ahora.toLocaleString("es-ES");
+}
+
+actualizarFecha();
+setInterval(actualizarFecha, 1000);
+</script>
 
 </body>
 </html>
