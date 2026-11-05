@@ -38,7 +38,9 @@ exports.handler = async function () {
       throw new Error("No hay datos disponibles");
     }
 
-    const ultimo = datos[datos.length - 1];
+    datos.sort((a, b) => a.fecha.localeCompare(b.fecha));
+
+const ultimo = datos[datos.length - 1];
 
     function media(lista) {
       if (!lista.length) return null;
